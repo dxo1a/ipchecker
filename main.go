@@ -60,7 +60,7 @@ func showMessage(title, message string) {
 
 func main() {
 	if alreadyRunning() {
-		showMessage("Ошибка", "IP Checker уже запущен!")
+		showMessage("Error", "IP Checker has already been launched!")
 		os.Exit(0)
 	}
 	systray.Run(onReady, onExit)
@@ -69,16 +69,16 @@ func main() {
 func onReady() {
 	systray.SetIcon(iconData)
 	systray.SetTitle("IP Checker")
-	systray.SetTooltip("Получение IP...")
+	systray.SetTooltip("Getting an IP address...")
 
-	mCopy := systray.AddMenuItem("Копировать IP", "Скопировать текущий IP")
-	mUpdate := systray.AddMenuItem("Обновить", "Проверить IP")
-	mInterval := systray.AddMenuItem("Интервал", "Интервал проверки")
-	m1 := mInterval.AddSubMenuItem("1 минута", "")
-	m5 := mInterval.AddSubMenuItem("5 минут", "")
-	m10 := mInterval.AddSubMenuItem("10 минут", "")
-	m30 := mInterval.AddSubMenuItem("30 минут", "")
-	mQuit := systray.AddMenuItem("Выход", "Закрыть программу")
+	mCopy := systray.AddMenuItem("Copy IP", "Copy the current IP")
+	mUpdate := systray.AddMenuItem("Refresh", "Refresh IP")
+	mInterval := systray.AddMenuItem("Interval", "IP check interval")
+	m1 := mInterval.AddSubMenuItem("1 minute", "")
+	m5 := mInterval.AddSubMenuItem("5 minutes", "")
+	m10 := mInterval.AddSubMenuItem("10 minutes", "")
+	m30 := mInterval.AddSubMenuItem("30 minutes", "")
+	mQuit := systray.AddMenuItem("Exit", "Close program")
 
 	updateIP()
 	go func() {
@@ -135,6 +135,6 @@ func updateIP() {
 			return
 		}
 	}
-	systray.SetTitle("Нет доступа")
-	systray.SetTooltip("Нет доступа к сервисам")
+	systray.SetTitle("No access")
+	systray.SetTooltip("There is no access to the services")
 }
